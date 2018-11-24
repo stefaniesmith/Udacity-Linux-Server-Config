@@ -81,7 +81,8 @@ $ sudo vi /etc/apache2/sites-enabled/000-default.conf
 PostgreSQL, git and required python packages were installed.
 ```sh
 $ sudo apt-get install postgresql postgresql-contrib git-core python-pip
-$ sudo pip install sqlalchemy flask oauth2client requests itsdangerous click jinja2 werkzeug cli json psycopg2 six httplib2 urllib3 chardet certifi idna
+$ sudo pip install sqlalchemy flask oauth2client requests itsdangerous click jinja2 
+$ sudo pip install werkzeug cli json psycopg2 six httplib2 urllib3 chardet certifi idna
 ```
 
 The web application was downloaded from GitHub and copied to the `/var/www/catalog/catalog` folder.
@@ -108,7 +109,10 @@ from catalog.app import app as application
 application.secret_key = 'super_secret_key'
 ```
 
-The web application was switched over to PostgreSQL, by replacing all occurences of `sqlite:///catalog.db` with `postgresql://catalog:catalog@localhost/catalog` in `database_setup.py`, `add_books.py` and `app.py`. 
+The web application was switched over to PostgreSQL, by replacing all occurrences of `sqlite:///catalog.db` with `postgresql://catalog:catalog@localhost/catalog` in:
+- `database_setup.py`
+- `add_books.py`
+- `app.py` 
 
 The OAuth credentials file, `client_secrets.json`, was created as detailed here:  
 https://github.com/svsmith/Udacity-Flask-Catalog-App/blob/master/README.md#obtaining-oauth-credentials-from-google  
