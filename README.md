@@ -4,10 +4,10 @@ For this project, a web application was setup and configured on a secure Linux s
 
 ## Accessing the web application
 
-The book catalog web application can be accessed here:
+The book catalog web application can be accessed here:  
 http://34.222.122.101.xip.io
 
-Additional information on the book catalog can be found here:
+Additional information on the book catalog can be found here:  
 https://github.com/svsmith/Udacity-Flask-Catalog-App
 
 ## Accessing the linux server
@@ -52,7 +52,7 @@ $ sudo ufw enable
 
 ### Configuration of grader user
 
-A grader user was created and given sudo privileges (by copying an existing sudo users file, and modifying the file to contain the correct user name). 
+A grader user was created and given sudo privileges (by copying an existing sudo user's file, and modifying the file to contain the correct user name). 
 ```sh
 $ sudo useradd grader
 $ sudo cp /etc/sudoers.d/90-cloud-init-users /etc/sudoers.d/grader
@@ -84,7 +84,7 @@ $ sudo apt-get install postgresql postgresql-contrib git-core python-pip
 $ sudo pip install sqlalchemy flask oauth2client requests itsdangerous click jinja2 werkzeug cli json psycopg2 six httplib2 urllib3 chardet certifi idna
 ```
 
-The web application was downloaded from github and copied to the /var/www/catalog/catalog folder.
+The web application was downloaded from GitHub and copied to the `/var/www/catalog/catalog` folder.
 ```sh
 $ cd ~
 $ git clone https://github.com/svsmith/Udacity-Flask-Catalog-App.git
@@ -131,7 +131,7 @@ $ python database_setup.py
 $ python add_books.py
 ```
 
-Finally, the apache service was restarted to apply the changes made:
+Finally, the Apache service was restarted to apply the changes made:
 ```sh
 $ sudo apache2ctl restart
 ```
