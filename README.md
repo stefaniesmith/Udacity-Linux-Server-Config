@@ -65,14 +65,73 @@ $ sudo su grader
 $ vi ~/.ssh/authorized_keys
 ```
 
-### Configuration of apache
+### Apache configuration
 
-Apached was installed and the `000-default.conf` file was modified to include the following line:  
+Apache was installed and the `000-default.conf` file was modified to include the following line:  
 ```WSGIScriptAlias / /var/www/catalog/catalog.wsgi```
 
 ```sh
 $ sudo apt-get install apache2
 $ sudo apt-get install libapache2-mod-wsgi
 $ sudo vi /etc/apache2/sites-enabled/000-default.conf
+```
+
+### Setup and deploy of web application
+
+PostgreSQL, git and required python packages were installed.
+```sh
+$ sudo apt-get install postgresql postgresql-contrib git-core python-pip
+$ sudo pip install sqlalchemy flask oauth2client requests itsdangerous click jinja2 werkzeug cli json psycopg2 six httplib2 urllib3 chardet certifi idna
+```
+
+The web application was downloaded from github and copied to the /var/www/catalog/catalog folder.
+```sh
+$ cd ~
+$ git clone https://github.com/svsmith/Udacity-Flask-Catalog-App.git
+$ sudo cp -rf ~/Udacity-Flask-Catalog-App/* /var/www/catalog/catalog
+```
+
+An empty `__init__.py` file was created in `/var/www/catalog/catalog/`.
+```sh
+$ sudo touch /var/www/catalog/catalog/__init__.py
+```
+
+The file `catalog.wsgi` was created in `/var/www/catalog`, and contains:  
+```
+#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/catalog")
+
+from catalog.app import app as application
+application.secret_key = 'super_secret_key'
+```
+
+The web application was switched over to PostgreSQL, by replacing all occurences of `sqlite:///catalog.db` with `postgresql://catalog:catalog@localhost/catalog` in `database_setup.py`, `add_books.py` and `app.py`. 
+
+The OAuth credentials file, `client_secrets.json`, was created as detailed here:  
+https://github.com/svsmith/Udacity-Flask-Catalog-App/blob/master/README.md#obtaining-oauth-credentials-from-google  
+and added to the `/var/www/catalog/catalog` folder, using `34.222.122.101.xip.io` instead of `localhost:5000` for the JavaScript origins and redirect URIs. 
+
+The location of `client_secrets.json` was updated in `app.py` to include the full path instead of the relative path:  
+`/var/www/catalog/catalog/client_secrets.json`
+
+A `catalog` database user was created for PostgreSQL:
+```sh
+$ sudo su - postgres
+$ createuser --pwprompt catalog
+$ createdb -O catalog catalog
+```
+
+The `catalog` database was setup and some sample data was added to the database:
+```sh
+$ cd /var/www/catalog/catalog
+$ python database_setup.py
+$ python add_books.py
+```
+
+Finally, the apache service was restarted to apply the changes made:
+```sh
 $ sudo apache2ctl restart
 ```
