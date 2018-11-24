@@ -112,7 +112,7 @@ The web application was switched over to PostgreSQL, by replacing all occurences
 
 The OAuth credentials file, `client_secrets.json`, was created as detailed here:  
 https://github.com/svsmith/Udacity-Flask-Catalog-App/blob/master/README.md#obtaining-oauth-credentials-from-google  
-and added to the `/var/www/catalog/catalog` folder, using `34.222.122.101.xip.io` instead of `localhost:5000` for the JavaScript origins and redirect URIs. 
+using `34.222.122.101.xip.io` instead of `localhost:5000` for the JavaScript origins and redirect URIs. The json file was then added to the `/var/www/catalog/catalog` folder. 
 
 The location of `client_secrets.json` was updated in `app.py` to include the full path instead of the relative path:  
 `/var/www/catalog/catalog/client_secrets.json`
