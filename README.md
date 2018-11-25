@@ -139,3 +139,10 @@ Finally, the Apache service was restarted to apply the changes made:
 ```sh
 $ sudo apache2ctl restart
 ```
+
+## References
+
+Sources of information used to complete this project:
+- Udacity Knowledge Forum: https://knowledge.udacity.com
+- A2 Hosting Knowledge Base: https://www.a2hosting.com/kb/developer-corner/postgresql/managing-postgresql-databases-and-users-from-the-command-line
+
