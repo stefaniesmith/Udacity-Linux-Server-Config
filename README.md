@@ -26,7 +26,7 @@ Details on the linux server setup and configuration are summarized below.
 Currently installed packages were updated using:
 ```sh
 $ sudo apt-get update
-$ sudo apt-get upgrade
+$ sudo apt-get --with-new-pkgs upgrade
 $ sudo apt-get autoremove
 ```
 
