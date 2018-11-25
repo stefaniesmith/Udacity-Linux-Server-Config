@@ -32,7 +32,7 @@ $ sudo apt-get autoremove
 
 ### SSH configuration
 
-The ssh port was changed to 2200 in the `sshd_config` file, and key-based authentication was enforced by ensuring that the `PasswordAuthentication` option was set to `no`. The ssh service was then restarted.
+The ssh port was changed to 2200 in the `sshd_config` file, `PermitRootLogin` was set to `no`, and key-based authentication was enforced by ensuring that the `PasswordAuthentication` option was set to `no`. The ssh service was then restarted.
 ```sh
 $ sudo vi /etc/ssh/sshd_config
 $ sudo service ssh restart
