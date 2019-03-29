@@ -7,6 +7,8 @@ For this project, a web application was setup and configured on a secure Linux s
 The book catalog web application can be accessed here:  
 http://34.222.122.101.xip.io
 
+**Note: The web application is no longer available for access.**
+
 Additional information on the book catalog can be found here:  
 https://github.com/svsmith/Udacity-Flask-Catalog-App
 
